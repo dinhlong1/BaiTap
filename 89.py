@@ -5,5 +5,9 @@ def SumOldIntegers(Num):
         Sum += i
     return Sum
 if __name__ == '__main__':
-    n = int(input("Nhập N "))
-    print("Tổng các số lẻ nguyên dương nhỏ hơn N là " + str(SumOldIntegers(n)))
+    n = input("Nhập N ")
+    print(float(n).is_integer())
+    while n.isdigit() == False or float(n).is_integer() == False or int(n) < 0:
+        n = input("Nhập lại N ")
+
+    print("Tổng các số lẻ nguyên dương nhỏ hơn N là " + str(SumOldIntegers(int(n))))
