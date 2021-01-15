@@ -1,10 +1,10 @@
 #Bài 96: Viết chương trình nhập giá trị x sau tính giá trị của hàm số
+# f(x) = 2x^2 + 5x + 9 khi x >= 5, f(x) = -2x^2 + 4x – 9 khi x < 5
 import math
 
 #Hàm kiểm tra giá trị có phải là số hay ko
 def is_number(value):
-    return value.isdigit() and float(value).is_integer() and int(value) > 0
-
+    return value.isalpha()== False
 #Hàm giải hàm số
 def solve_number_funtion(x, a, b ,c ):
     if a != 0:
@@ -25,13 +25,16 @@ def solve_number_funtion(x, a, b ,c ):
 
 if __name__ == '__main__':
 
-    #Hàm số bất kỳ
-    print("f(x) = 3x^2 +7*x +4")
-
-
-    x = (input("Nhập x = "))
+    x = input("Nhập x = ")
     while not is_number(x):
-        x = (input("Nhập lại x = "))
+        x = input("Nhập lại x = ")
 
-    result = solve_number_funtion(int(x), 3, 7, 4)
-    print("Kết quả là "+ str(result))
+        # Xét điều kiện
+    if float(x) >=5 :
+        #f(x) = 2x^2 + 5x + 9
+        result = solve_number_funtion(float(x), 2, 5, 9)
+    else:
+        #f(x) = -2x^2 + 4x – 9
+        result = solve_number_funtion(float(x), -2, 4, -9)
+
+    print("Kết quả là" , result)
