@@ -1,7 +1,5 @@
 #Bài 128 + 130: Viết hàm nhập, xuất mảng 1 chiều các số thực
 
-import numpy as np
-
 #Hàm kiểm tra đây có phải là số thực
 def is_float(value):
     try:
@@ -173,11 +171,109 @@ def find_locate_smallest_negative_numbers_in_list_real_number(list):
     return locate
 
 
+#Bài 155: Hãy tìm giá trị trong mảng các số thực xa giá trị x nhất
+
+def find_farthest_real_number(x, list):
+
+
+    #Biến khoảng cách xa nhất
+    farthest_range = 0
+
+    #Gắn giá trị đầu tiên trong mảng là giá trị xa nhất
+    real_number_farthest = list[0]
+
+    if x < 0:
+        for i in list:
+            # Tính khoảng cách
+            range_x_vs_element = abs(x-i)
+            if range_x_vs_element > farthest_range or farthest_range == 0:
+                farthest_range = range_x_vs_element
+                real_number_farthest = i
+
+    return real_number_farthest
+
+#Bài 156: Hãy tìm giá trị trong mảng các số thực gần giá trị x nhất
+
+def find_nearest_real_number(x, list):
+
+
+    #Biến khoảng cách xa nhất
+    nearest_range = 0
+
+    #Gắn giá trị đầu tiên trong mảng là giá trị xa nhất
+    real_number_nearest = list[0]
+
+    if x < 0:
+        for i in list:
+            range_x_vs_element = abs(i - x)
+
+            #So sánh khoảng cách vừa đo với khoảng cách hiện tại
+            if range_x_vs_element < nearest_range or nearest_range == 0:
+                nearest_range = range_x_vs_element
+                real_number_nearest = i
+
+    return real_number_nearest
+
+#Bài 157: Cho mảng 1 chiều các số thực, hãy tìm đoạn [a, b] sao cho đoạn này chứa tất cả các giá trị trong mảng
+
+def find_range_min_real_number_max_real_number(list):
+    min_number = list[0]
+    max_number = list[0]
+    for i in list:
+        if min_number > i:
+            min_number = i
+        if max_number <i :
+            max_number = i
+
+    return "["+str(min_number)+","+str(max_number)+"]"
+
+#Bài 158: Cho mảng 1 chiều các số thực, hãy tìm giá trị x sao cho đoạn [-x, x] chứa tất cả các giá trị trong mảng
+
+def find_space_contain_all_value_in_list(list):
+
+    highest_number = abs(list[0])
+
+    for i in list:
+        if abs(i) > highest_number:
+            highest_number = abs(i)
+
+    return "[-" + str(highest_number) + "," + str(highest_number) + "]"
+
+
+#Bài 159: Cho mảng 1 chiều các số thực, hãy tìm giá trị đầu tiên lớn hơn giá trị 2003. Nếu mảng không có giá trị thỏa điều kiện trên thì trả về  -1
+
+def find_first_real_number_bigger_2003(list):
+    for i in list:
+        if i >2003:
+            return i
+    return -1
+
+#Bài 160: Cho mảng 1 chiều các số thực, hãy tìm giá trị âm cuối cùng lớn hơn giá trị -1. Nếu mảng không có giá trị thỏa điều kiện trên thì trả về -1
+
+def find_last_real_number_smaller(list):
+
+    for i in range(len(list)-1,-1,-1):
+        if list[i] < 0 and list[i] > -1:
+            return list[i]
+    return -1
+
+#Bài 162: Cho mảng 1 chiều các số thực. Hãy viết hàm tìm một vị trí trong mảng thỏa 2 điều kiện: có 2 giá trị lân cận và giá trị tại đó bằng tích 2 giá trị lân cận.
+# Nếu mảng không tồn tại giá trị như vậy thì trả về giá trị -1
+
+def find_real_number_by_product(list):
+
+    for i in range(1, len(list)-1):
+        if list[i] == (list[i - 1] * list[i + 1]):
+            return list[i]
+    return -1
+
+
 
 if __name__ == '__main__':
 
     #Dùng hàm nhập
     result = enter_array_of_real_numbers()
-    a = find_locate_smallest_negative_numbers_in_list_real_number(result)
+    a = find_real_number_by_product(result)
 
     print(a)
+

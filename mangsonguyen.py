@@ -1,6 +1,6 @@
 #Bài 128 + 130: Viết hàm nhập, xuất mảng 1 chiều các số thực
 
-
+import math
 
 #Hàm kiểm tra đây có phải là số thực
 def is_float(value):
@@ -189,11 +189,119 @@ def find_smallest_even_number_in_list(list):
 
     return smallest_even_number
 
+#Bài 161: Cho mảng 1 chiều các số nguyên, hãy tìm giá trị đầu tiên nằm trong khoảng [x, y] cho trước. Nếu mảng không có giá trị thỏa điều kiện trên thì trả về -1
+
+def find_real_number_in_range(x,y,list):
+
+    for i in list:
+        if x > y:
+            if i >=y and i <= x:
+                return i
+        else:
+            if i <=y and i >= x:
+                return i
+    return -1
+
+#Bài 163: Tìm số chính phương đầu tiên trong mảng 1 chiều các số nguyên
+
+#Hàm kiểm tra số chính phương
+def is_square_number(target_number):
+
+    if target_number < 0:
+        return False
+
+    else:
+        for i in range(1, target_number):
+            if i * i == target_number:
+                return True
+
+        return False
+
+
+def find_square_number_in_list_integer_number(list):
+    for i in list:
+        if is_square_number(i)== True:
+            return i
+    return -1
+#Bài 164: Cho mảng 1 chiều các số nguyên. Hãy tìm giá trị đầu tiên thỏa mãn tính chất số gánh
+
+#Hàm xác định số đảo ngược
+def is_reversible_number(target_number):
+    #Biến số thành chuôi
+    str1 = str(target_number)
+    #Đảo ngược chuôi
+    str2 = str1[::-1]
+    if (str1 == str2):
+        return True
+    else:
+        return False
+
+def find_first_reversible_number_in_list(list):
+    for i in list:
+        if is_reversible_number(i) == True:
+            return i
+    return  -1
+
+#Bài 165: Cho mảng 1 chiều các số nguyên. Hãy tìm giá trị đầu tiên có chữ số đầu tiên là chữ số lẻ
+
+def find_first_odd_number_in_list_integer_number(list):
+    for i in list:
+        if i % 2 != 0:
+            return  i
+    return  -1
+
+#Bài 166: Cho mảng 1 chiều các số nguyên. Hãy viết hàm tìm giá trị đầu tiên trong mảng có dạng 2^k. Nếu mảng không có giá trị dạng 2k thì hàm sẽ trả về 0
+
+def find_first_square_root_number_in_list_integer_number(list):
+    for i in list:
+        if math.sqrt(i).is_integer() == True:
+            return i
+    return -1
+
+#Bài 167: Hãy tìm giá trị thỏa điều kiện toàn chữ số lẻ và là giá trị lớn nhất thỏa điều kiện ấy trong mảng 1 chiều các số nguyên.
+# Nếu mảng không có giá trị thỏa điều kiện trên thì trả về 0
+
+def list_number_to_number(list):
+    a = len(list) -1
+    list_number = ""
+    while a >= 0 :
+        list_number = list_number + list[0]
+    # return int(list_number)
+    print(list_number)
+
+def is_is_number_by_all_negative(number):
+    all_number_in_integer_number =[]
+    space = 10
+    while number != list_number_to_number(all_number_in_integer_number):
+        if space == 10:
+            number_str = number % space
+            all_number_in_integer_number.append(str(number_str))
+        else:
+            number_str = number % space //(space/10)
+            all_number_in_integer_number.append(str(number_str))
+    for i in all_number_in_integer_number:
+        if i % 2 == 0 :
+            return False
+    return True
+
+def find_number_with_all_negative_number_in_list(list):
+
+    target_number = 0
+    for i in list:
+        if is_is_number_by_all_negative(i) == True:
+            target_number = i
+    return target_number
+
+
+
 if __name__ == '__main__':
 
     #Dùng hàm nhập
-    result = enter_array_of_integer_numbers()
-
-    a = find_smallest_perfect_number_in_list(result)
-    print(a)
+     result = enter_array_of_integer_numbers()
+    #
+    # a = find_first_square_root_number_in_list_integer_number(result)
+    # print(a)
+    # a = [str(1),str(1),str(1),str(1)]
+    # list_number_to_number(a)
+    # is_is_number_by_all_negative(1357)
 
