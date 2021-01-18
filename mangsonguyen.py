@@ -256,52 +256,175 @@ def find_first_square_root_number_in_list_integer_number(list):
     for i in list:
         if math.sqrt(i).is_integer() == True:
             return i
-    return -1
+    return 0
 
 #Bài 167: Hãy tìm giá trị thỏa điều kiện toàn chữ số lẻ và là giá trị lớn nhất thỏa điều kiện ấy trong mảng 1 chiều các số nguyên.
 # Nếu mảng không có giá trị thỏa điều kiện trên thì trả về 0
 
-def list_number_to_number(list):
-    a = len(list) -1
-    list_number = ""
-    while a >= 0 :
-        list_number = list_number + list[0]
-    # return int(list_number)
-    print(list_number)
-
 def is_is_number_by_all_negative(number):
-    all_number_in_integer_number =[]
-    space = 10
-    while number != list_number_to_number(all_number_in_integer_number):
-        if space == 10:
-            number_str = number % space
-            all_number_in_integer_number.append(str(number_str))
-        else:
-            number_str = number % space //(space/10)
-            all_number_in_integer_number.append(str(number_str))
-    for i in all_number_in_integer_number:
-        if i % 2 == 0 :
+
+    str_number = str(number)
+
+    total_number = len(str_number) -1
+
+    while total_number < 0:
+        if int(str_number[total_number]) % 2 == 0:
             return False
+        total_number = total_number - 1
     return True
 
 def find_number_with_all_negative_number_in_list(list):
 
     target_number = 0
     for i in list:
-        if is_is_number_by_all_negative(i) == True:
+        if (is_is_number_by_all_negative(i) == True and target_number ==0 ) or (is_is_number_by_all_negative(i) == True and i >target_number):
             target_number = i
     return target_number
 
+#Bài 168: Cho mảng 1 chiều các số nguyên. Hãy viết hàm tìm giá trị lớn nhất trong mảng có dạng 5^k. Nếu mảng khong tồn tại giá trị 5^k thì hàm sẽ trả về 0
 
 
+def is_number_square_root_of_five(number):
+    while number != 1 :
+        if number % 5 != 0:
+            return False
+        number = number// 5
+    return True
+
+def find_number_square_root_of_five_number_in_list_integer_number(list):
+
+    biggeset_number_square_root_of_five = 0
+
+    for i in list:
+        if (is_number_square_root_of_five(i) == True and biggeset_number_square_root_of_five==0) or (is_number_square_root_of_five(i) == True and biggeset_number_square_root_of_five < i):
+            biggeset_number_square_root_of_five = i
+    return biggeset_number_square_root_of_five
+
+#Bài 169 (*): Cho mảng 1 chiều các số nguyên. Hãy viết hàm tìm số chẵn nhỏ nhất lớn hơn mọi giá trị có trong mảng
+
+
+def find_smallest_even_number_bigger_sum_numbers_in_list(list):
+    sum_list = 0
+    for i in list:
+        sum_list = sum_list + i
+
+
+    while sum_list != 0.1:
+        sum_list = sum_list + 1
+        if sum_list % 2 == 0:
+           return sum_list
+
+
+
+
+#Bài 170: Cho mảng 1 chiều các số nguyên. Hãy viết hàm tìm số nguyên tố nhỏ nhất lớn hơn mọi giá trị có trong mảng
+
+def find_smallest_prime_number_bigger_sum_numbers_in_list(list):
+    sum_list = 0
+    for i in list:
+        sum_list = sum_list + i
+
+    while sum_list!=0.1:
+        sum_list = sum_list + 1
+        if is_prime_number(sum_list)==True:
+
+           return sum_list
+
+#Bài 171: Cho mảng 1 chiều các số nguyên. Hãy viết hàm tìm ước chung lớn nhất của tất cả các phần tử trong mảng
+
+def is_number_common_divisor_in_list(x , list):
+    for t in range(0, len(list)):
+        if list[t] % x != 0:
+            return False
+    return True
+
+
+def find_greatest_common_divisor_in_list(list):
+    smallest_number = list[0]
+    for i in list:
+        if i <= 0:
+            return -1
+        if i < smallest_number and i >0:
+            smallest_number = i
+    for i in range(smallest_number, 0 , -1):
+        if is_number_common_divisor_in_list(i,list) == True:
+            return i
+
+    return -1
+
+#Bài 172: Cho mảng 1 chiều các số nguyên. Hãy viết hàm tìm bội chung nhỏ nhất của tất cả các phần tử trong mảng
+
+def is_common_multiple_in_list(x, list):
+    for i in  list:
+        if x % i != 0:
+            return False
+    return True
+
+def find_the_smallest_common_multiple_in_list(list):
+    biggest_number = list[0]
+    product_of_numbers = 1
+    for i in list:
+        if i <= 0:
+            return -1
+        else:
+            product_of_numbers = product_of_numbers * i
+            if i > biggest_number:
+                biggest_number = i
+    for i in range(biggest_number, product_of_numbers , 1):
+        if is_common_multiple_in_list(i,list) == True:
+            return i
+
+    return -1
+
+#Bài 173 (*): Cho mảng 1 chiều các số nguyên. Hãy  viết hàm tìm chữ số xuất hiện ít nhất trong mảng
+
+def find_number_appears_least(list):
+    count_number_appears_least = 0
+    number_appears_least = [0]
+    for i in range(1,10):
+        count_number_appears = 0
+        for t in list:
+            count_number_appears = count_number_appears + int(str(t).count(str(i)))
+        if count_number_appears < count_number_appears_least or count_number_appears_least==0:
+            count_number_appears_least = count_number_appears
+            number_appears_least = i
+    return number_appears_least
+
+#Bài 178: Hãy liệt kê các số chẵn trong mảng 1 chiều các số nguyên thuộc đoạn [x, y] cho trước (x, y là các số nguyên)
+
+def find_all_number_in_space_in_list_number(x, y,list):
+    list_number = []
+    for i in list:
+        if i <= y and i >= x and i % 2 == 0:
+            list_number.append(i)
+    return list_number
+
+#Bài 179: Hãy liệt kê các giá trị trong mảng mà thỏa điều kiện lớn hơn giá trị tuyệt đối của giá trị đứng liền sau nó
+
+def find_number_bigger_next_number_in_list(list):
+    list_number =[]
+    for i in range(1,len(list)-1):
+        if list[i] > abs(list[i+1]):
+            list_number.append(list[i])
+    return list_number
+
+#Bài 180: Hãy liệt kê các giá trị trong mảng mà thỏa điều kiện nhỏ hơn trị tuyệt đối của giá trị đứng liền sau nó
+# và lớn hơn trị tuyệt đối của giá trị đứng liền trước nó
+
+def find_number_bigger_previous_number_and_smaller_next_number_in_list(list):
+    list_number =[]
+    for i in range(1,len(list)-1):
+        if list[i] < abs(list[i+1]) and list[i] > abs(list[i-1]) :
+            list_number.append(list[i])
+    return list_number
 if __name__ == '__main__':
 
     #Dùng hàm nhập
-     result = enter_array_of_integer_numbers()
-    #
-    # a = find_first_square_root_number_in_list_integer_number(result)
-    # print(a)
-    # a = [str(1),str(1),str(1),str(1)]
-    # list_number_to_number(a)
-    # is_is_number_by_all_negative(1357)
+    result = enter_array_of_integer_numbers()
+
+    a = find_number_bigger_previous_number_and_smaller_next_number_in_list(result)
+    print(a)
+
+
+
 

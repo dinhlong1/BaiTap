@@ -182,13 +182,13 @@ def find_farthest_real_number(x, list):
     #Gắn giá trị đầu tiên trong mảng là giá trị xa nhất
     real_number_farthest = list[0]
 
-    if x < 0:
-        for i in list:
-            # Tính khoảng cách
-            range_x_vs_element = abs(x-i)
-            if range_x_vs_element > farthest_range or farthest_range == 0:
-                farthest_range = range_x_vs_element
-                real_number_farthest = i
+
+    for i in list:
+        # Tính khoảng cách
+        range_x_vs_element = abs(x-i)
+        if range_x_vs_element > farthest_range or farthest_range == 0:
+            farthest_range = range_x_vs_element
+            real_number_farthest = i
 
     return real_number_farthest
 
@@ -203,14 +203,14 @@ def find_nearest_real_number(x, list):
     #Gắn giá trị đầu tiên trong mảng là giá trị xa nhất
     real_number_nearest = list[0]
 
-    if x < 0:
-        for i in list:
-            range_x_vs_element = abs(i - x)
 
-            #So sánh khoảng cách vừa đo với khoảng cách hiện tại
-            if range_x_vs_element < nearest_range or nearest_range == 0:
-                nearest_range = range_x_vs_element
-                real_number_nearest = i
+    for i in list:
+        range_x_vs_element = abs(i - x)
+
+        #So sánh khoảng cách vừa đo với khoảng cách hiện tại
+        if range_x_vs_element < nearest_range or nearest_range == 0:
+            nearest_range = range_x_vs_element
+            real_number_nearest = i
 
     return real_number_nearest
 
@@ -268,12 +268,65 @@ def find_real_number_by_product(list):
     return -1
 
 
+#Bài 174 (*): Cho mảng số thực có nhiều hơn 2 giá trị và các giá trị trong mảng khác nhau từng đôi một.
+# Hãy viết hàm liệt kê tất cả các cặp giá trị (a, b) trong mảng thỏa điều kiện a <= b
+
+def finds_all_pairs_of_values_in_list(list):
+    for i in list:
+        for t in list:
+            if i <= t:
+                print("["+str(i)+","+str(t)+"]")
+
+
+#Bài 175 (*): Cho mảng số thực có nhiều hơn 2 giá trị và các giá trị trong mảng khác nhau từng đôi một. Hãy viết hàm tìm 2 giá trị gần nhau nhất trong mảng
+# (Lưu ý: Mảng có các giá trị khác nhau từng đôi một còn có tên là mảng phân biệt)
+
+def find_space_shortest_in_list_real_number(list):
+    space_shortest = 0
+    location_space_shortest_first = list[0]
+    location_space_shortest_second = list[1]
+    for x in list:
+        for i in list:
+            if x == i:
+                continue
+            range_x_vs_i = abs(i - x)
+
+            # So sánh khoảng cách vừa đo với khoảng cách hiện tại
+            if range_x_vs_i < space_shortest or space_shortest == 0:
+                space_shortest = range_x_vs_i
+                location_space_shortest_first = i
+                location_space_shortest_second = x
+                if i > x:
+                    location_space_shortest_first = x
+                    location_space_shortest_second = i
+
+    return "Khoảng cách ngắn nhất là ["+str(location_space_shortest_first)+","+str(location_space_shortest_second)+"]"
+
+#Bài 176: Hãy liệt kê các số âm trong mảng 1 chiều các số thực
+
+def find_all_odd_number_in_list_real_number(list):
+    list_odd_number = []
+    for i in list:
+        if i < 0:
+            list_odd_number.append(i)
+    return list_odd_number
+
+#Bài 177: Hãy liệt kê các số trong mảng 1 chiều các số thực thuộc đoạn [x, y] cho trước
+
+def find_all_number_in_space_in_list_real_number(x, y,list):
+    list_number = []
+    for i in list:
+        if i <= y and i >= x:
+            list_number.append(i)
+    return list_number
+
+
 
 if __name__ == '__main__':
 
     #Dùng hàm nhập
     result = enter_array_of_real_numbers()
-    a = find_real_number_by_product(result)
+    a = find_space_shortest_in_list_real_number(result)
 
     print(a)
 
