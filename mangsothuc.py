@@ -321,12 +321,82 @@ def find_all_number_in_space_in_list_real_number(x, y,list):
     return list_number
 
 
+#Bài 182: Cho mảng 1 chiều các số thực. Hãy viết hàm liệt kê tất cả các giá trị trong mảng có ít nhất 1 lận cận trái dấu với nó
+
+def find_all_real_number_at_least_one_diacritic_with_it(list):
+
+    number_list = []
+    for i in range(1, len(list) - 1):
+        if (list[i] >= 0 and (list[i - 1] < 0 or list[i + 1] < 0)) or (list[i] < 0 and (list[i - 1] >= 0 or list[i + 1] >= 0)):
+            number_list.append(list[i])
+    return number_list
+
+#Bài 183: Hãy liệt kê các vị trí mà giá trị tại đó là giá trị tại đó là giá trị lớn nhất trong mảng 1 chiều các số thực
+
+def def_all_locate_biggest_real_number_in_real_number_list(list):
+    locate_number_list = []
+
+    for i in range(0, len(list)):
+        if list[i] > find_biggest_real_number():
+            locate_max = i
+            locate_number_list.append(i)
+    return locate_number_list
+#Bài 186: Hãy liệt kê các vị trí trong mảng 1 chiều các số thực mà giá trị tại đó bằng giá trị âm đầu tiên trong mảng
+
+def def_all_locate_negative_real_number_in_real_number_list(list):
+    locate_number_list = []
+
+    for i in range(0, len(list)):
+
+        if list[i] == find_first_negative_number_in_list_real_number(list):
+            locate_number_list.append(i)
+
+    return locate_number_list
+
+#Bài 187: Hãy liệt kê các vị trí mà giá trị tại các vị trí đó bằng giá trị dương nhỏ nhất trong mảng 1 chiều các số thực
+def find_all_locate_smallest_positive_in_list(list):
+    locate_number_list = []
+
+    for i in range(0, len(list)):
+
+        if list[i] == find_smallest_positive_numbers_in_list_real_number(list):
+            locate_number_list.append(i)
+
+    return locate_number_list
+
+#Bài 191: Hãy liệt kê các giá trị cực đại trong mảng 1 chiều các số thực. Một phần tử được gọi là cực đại khi lớn hơn các phần tử lân cận
+
+def find_all_maximum_values_in_real_number_array(list):
+    number_list = []
+    for i in range(1, len(list) - 1):
+        if list[i - 1] < list[i] and list[i + 1] < list[i]:
+            number_list.append(list[i])
+    return number_list
+
+#Bài 198: Hãy liệt kê các vị trí mà giá trị tại đó là giá trị lớn nhất trong mảng 1 chiều các số thực
+
+def find_positions_where_the_value_is_the_maximum(list):
+    list_locate_maximum_number = []
+    for i in range(0,len(list)):
+        if find_biggest_real_number(list) == list[i]:
+            list_locate_maximum_number.append(list[i])
+
+    return list_locate_maximum_number
+
+#Bài 201: Tính tổng các giá trị dương trong mảng 1 chiều các số thực
+
+def caculate_sum_positive_number_in_list(list):
+    sum_list = 0
+    for i in list:
+        if i >= 0:
+            sum += i
+    return sum_list
 
 if __name__ == '__main__':
 
     #Dùng hàm nhập
     result = enter_array_of_real_numbers()
-    a = find_space_shortest_in_list_real_number(result)
+    a = find_all_maximum_values_in_real_number_array(result)
 
     print(a)
 

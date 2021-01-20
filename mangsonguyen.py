@@ -265,12 +265,12 @@ def is_is_number_by_all_negative(number):
 
     str_number = str(number)
 
-    total_number = len(str_number) -1
 
-    while total_number < 0:
-        if int(str_number[total_number]) % 2 == 0:
+    for i in range(0,len(str_number) ):
+        if str_number[i] == "-" and i == 0:
+            continue
+        if int(str_number[i]) % 2 == 0:
             return False
-        total_number = total_number - 1
     return True
 
 def find_number_with_all_negative_number_in_list(list):
@@ -417,12 +417,217 @@ def find_number_bigger_previous_number_and_smaller_next_number_in_list(list):
         if list[i] < abs(list[i+1]) and list[i] > abs(list[i-1]) :
             list_number.append(list[i])
     return list_number
+
+
+# Bài 181: Cho mảng 1 chiều các số nguyên. Hãy viết hàm liệt kê các giá trị chẵn có ít nhất 1 lân cận cũng là giá trị chẵn
+def find_all_even_number_nearly_even_number(list):
+    number_list = []
+    for i in range(1, len(list) - 1):
+        if list[i] % 2 == 0 and (list[i - 1] % 2 == 0 or list[i + 1] % 2 == 0):
+            number_list.append(list[i])
+    return number_list
+
+# Bài 184: Hãy liệt kê các vị trí mà giá trị tại đó là số nguyên tố trong mảng 1 chiều các số nguyên
+def find_all_locate_prime_number_in_list(list):
+    locate_number_list = []
+
+    for i in range(0, len(list)):
+
+        if is_prime_number(list[i]) == True:
+            locate_number_list.append(i)
+
+    return locate_number_list
+#Bài 185: Hãy liệt kê các vị trí mà giá trị tại đó là số chính phương trong mảng 1 chiều các số nguyên
+
+    locate_number_list = []
+
+    for i in range(0, len(list)):
+
+        if is_square_number(list[i]) == True:
+            locate_number_list.append(i)
+
+    return locate_number_list
+
+#Bài 188: Hãy liệt kê các vị trí chẵn lớn nhất trong mảng 1 chiều các số nguyên
+
+def find_biggest_even_number_in_list(list):
+    max_even_number = 0
+    for i in list:
+        if (max_even_number == 0 and  i % 2==0) or (max_even_number< i and max_even_number != 0) :
+            max_even_number= i
+    return  i
+
+
+def find_all_locate_biggest_even_number_in_list(list):
+    locate_number_list = []
+    for i in range(0, len(list)):
+
+        if list[i] == find_biggest_even_number_in_list(list):
+            locate_number_list.append(i)
+
+    return locate_number_list
+
+#Bài 189: Hãy liệt kê các giá trị trong mảng 1 chiều các số nguyên có chữ số đầu tiên là chữ số lẻ
+
+def find_all_integers_whose_first_digit_is_an_odd_number(list):
+    number_list = []
+    for i in list:
+        text_i = str(i)
+        if text_i[0] == '-':
+            if  int(text_i[1]) % 2 != 0:
+                number_list.append(i)
+        else:
+            if int(text_i[0]) % 2 != 0:
+                number_list.append(i)
+    return  number_list
+
+#Bài 190: Hãy liệt kê các giá trị có toàn chữ số lẻ trong mảng 1 chiều các số nguyên
+def find_all_integers_whose_all_digit_is_an_odd_number(list):
+    number_list = []
+    for i in list:
+        if is_is_number_by_all_negative(i) == True:
+            number_list.append(i)
+    return number_list
+
+
+#Bài 192: Hãy liệt kê các  giá trị trong mảng 1 chiều các số nguyên có chữ số đầu tiên là số chẵn
+
+def find_all_integers_whose_first_digit_is_an_even_number(list):
+
+    number_list = []
+    for i in list:
+        text_i = str(i)
+        if text_i[0] == '-':
+            if  int(text_i[1]) % 2 == 0:
+                number_list.append(i)
+        else:
+            if int(text_i[0]) % 2 == 0:
+                number_list.append(i)
+    return  number_list
+
+
+#Bài 193: Cho mảng 1 chiều các số nguyên. Hãy viết hàm liệt kê các giá trị trong mảng có dạng 3^k. Nếu mảng không có giá trị đó thì trả về 0
+
+
+def is_number_square_root_of_three(number):
+    while number != 1 :
+        if number % 3 != 0:
+            return False
+        number = number// 5
+    return True
+
+def find_number_square_root_of_three_number_in_list_of_integer_number(list):
+
+    list_of_number = []
+
+    for i in list:
+        if is_number_square_root_of_three(i) == True :
+            list_of_number.append(i)
+    if list_of_number == []:
+        return 0
+    else:
+        return list_of_number
+
+#Bài 194: Cho mảng 1 chiều các số nguyên có nhiều hơn 2 giá trị. Hãy viết hàm liệt kê các cặp giá trị gần nhau nhất
+
+def find_closest_distance_between_two_values(list):
+    closest_distance = 0
+
+    for i in range(0,len(list)-1):
+        if closest_distance > abs(list[i] -list[i+1]) or closest_distance == 0:
+            closest_distance = abs(list[i] -list[i+1])
+
+    return closest_distance
+
+def find_lists_the_closest_pairs_of_values_in_list(list):
+    list_of_value_pairs = []
+    for i in range(0,len(list)-1):
+        if abs(list[i] -list[i +1]) == find_closest_distance_between_two_values(list):
+            if list[i] >list[i+1]:
+                list_of_value_pairs.append("[" + str(list[i + 1]) + "," + str(list[i]) + "]")
+            else:
+                list_of_value_pairs.append("["+str(list[i])+","+str(list[i+1])+"]")
+
+    return list_of_value_pairs
+
+#Bài 196: Liệt kê các số âm trong mảng 1 chiều các số nguyên
+
+def find_list_negative_numbers_in_array(list):
+    list_negative_numbers = []
+    for i in list:
+        if i < 0:
+            list_negative_numbers.append(i)
+    return list_negative_numbers
+
+#Bài 197: Hãy liệt kê các giá trị trong mảng các số nguyên có chữ số đầu tiên là chữ số lẻ
+
+def is_number_whose_first_digit_is_an_odd_number(number):
+    text_number = str(number)
+    if text_number[0] == '-':
+        if int(text_number[1]) % 2 != 0:
+            return True
+    else:
+        if int(text_number[0]) % 2 != 0:
+            return True
+    return False
+
+
+def find_all_integers_whose_first_digit_is_an_odd_number(list):
+    number_list = []
+    for i in list:
+        text_i = str(i)
+        if text_i[0] == '-':
+            if  int(text_i[1]) % 2 != 0:
+                number_list.append(i)
+        else:
+            if int(text_i[0]) % 2 != 0:
+                number_list.append(i)
+    return  number_list
+
+#Bài 199: Hãy liệt kê các vị trí mà giá trị tại đó là số nguyên tố trong mảng 1 chiều các số nguyên
+
+def find_all_locate_prime_number_in_list(list):
+    locate_number_list = []
+
+    for i in range(0, len(list)):
+
+        if is_prime_number(list[i]) == True:
+            locate_number_list.append(i)
+
+    return locate_number_list
+
+#Bài 200: Tính tổng các phần tử trong mảng
+
+def caculate_sum_in_list(list):
+    sum_list = 0
+    for i in list:
+        sum += i
+    return sum_list
+
+#Bài 202: Tính tổng các giá trị có chữ số đầu tiên là chữ số lẻ trong mảng 1 chiều các số nguyên
+
+def caculate_sum_number_whose_first_digit_is_an_odd_number_in_list(list):
+    sum_list = 0
+    for i in list:
+        if is_number_whose_first_digit_is_an_odd_number(i) == True:
+            sum += i
+    return sum_list
+
+#Bài 203: Tinh tổng các chữ số có chữ số hàng chục là 5 trong mảng 1 chiều các số nguyên
+def caculate_sum_number_whose_tens_digit_is_five_in_list(list):
+    sum_list = 0
+    for i in  list:
+        if i >= 10:
+            if i %100 //10  == 5:
+                sum_list += i
+    return sum_list
+
 if __name__ == '__main__':
 
     #Dùng hàm nhập
     result = enter_array_of_integer_numbers()
 
-    a = find_number_bigger_previous_number_and_smaller_next_number_in_list(result)
+    a = find_lists_the_closest_pairs_of_values_in_list(result)
     print(a)
 
 
