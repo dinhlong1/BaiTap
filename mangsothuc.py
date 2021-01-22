@@ -392,11 +392,111 @@ def caculate_sum_positive_number_in_list(list):
             sum += i
     return sum_list
 
+#Bài 204: Tính tổng các giá trị lớn hơn giá trị đứng liền trước nó trong mảng 1 chiều các số thực
+
+def caculate_sum_number_greater_value_that_precedes_it(list):
+    sum_list = 0
+    for i in range(1, len(list)):
+        if list[i - 1] < list[i] :
+            sum_list += list[i]
+    return sum_list
+
+#Bài 205: Tính tổng các giá trị lớn hơn trị tuyệt đối của giá trị đứng liền sau nó trong mảng 1 chiều các số thực
+
+def caculate_sum_values_greater_abs_of_value_after_it(list):
+    sum_list = 0
+    for i in range(0, len(list) - 1):
+        if abs(list[i + 1]) < list[i]:
+            sum_list += list[i]
+    return sum_list
+
+#Bài 206: Tính tổng các giá trị lớn hơn các giá trị xung quanh trong mảng 1 chiều các số thực
+# Lưu ý: Một giá trị trong mảng có tối đa 2 giá trị xung quang
+
+def caculate_sum_values_greater_than_the_surrounding_values_in_real_number_array(list):
+    sum_list = 0
+    for i in range(1, len(list) - 1):
+        if list[i - 1] < list[i] and list[i + 1] < list[i]:
+            sum_list += list[i]
+        return sum_list
+
+#Bài 207: Tính tổng các phần tử “cực trị” trong mảng. Một phần tử được gọi là cực trị khi
+# nó lớn hơn hoặc nhỏ hơn các phần tử xung quanh nó
+
+def sum_the_extreme_elements_in_list(list):
+    sum_list = 0
+    for i in range(1, len(list) - 1):
+        if (list[i - 1] < list[i] and list[i + 1] < list[i]) or (list[i - 1] > list[i] and list[i + 1] > list[i]):
+            sum_list += list[i]
+        return sum_list
+
+#Bài 212: Tính trung bình cộng các số dương trong mảng 1 chiều các số thực
+
+def average_the_positive_numbers_in_list(list):
+    sum_positive_numbers = 0
+    count_positive_numbers = 0
+    for i in list:
+        if i > 0:
+            sum_positive_numbers += i
+            count_positive_numbers += 1
+
+    if sum_positive_numbers == 0:
+        return 0
+    return sum_positive_numbers / count_positive_numbers
+
+
+#Bài 213: Tính trung bình cộng các giá trị lớn hơn giá trị x trong mảng 1 chiều các số thực
+
+def average_values_greater_than_x_in_list(x, list):
+    sum_numbers_greater_than_x = 0
+    count_numbers_greater_than_x = 0
+
+    for i in list:
+        if i > x:
+            sum_numbers_greater_than_x += i
+            count_numbers_greater_than_x += 1
+    if count_numbers_greater_than_x == 0:
+        return 0
+
+    return sum_numbers_greater_than_x / count_numbers_greater_than_x
+
+#Bài 214: Tính trung bình nhân các giá trị dương có trong mảng 1 chiều các số thực
+
+def average_multiplies_positive_values(list):
+    multiplies_positive_values = 1
+    count_positive_values = 0
+    for i in list:
+        if i > 0:
+            multiplies_positive_values = multiplies_positive_values * i
+            count_positive_values += 1
+    if count_positive_values == 0:
+        return 0
+
+    return multiplies_positive_values**(1/count_positive_values)
+
+#Bài 215 (*): Tính khoảng các trung bình giữa các giá trị trong mảng
+
+def calculate_the_average_distance_between_the_values(list):
+    sum_the_average_distance_between_the_values = 0
+    count_the_average_distance__between_the_values = 0
+    for i in range(0,len(list)):
+        for t in range(0,len(list)):
+            if i != t :
+                sum_the_average_distance_between_the_values += abs(list[i] - list[t])
+                count_the_average_distance__between_the_values += 1
+    if count_the_average_distance__between_the_values == 0:
+        return 0
+    print(count_the_average_distance__between_the_values)
+    print(sum_the_average_distance_between_the_values)
+    return sum_the_average_distance_between_the_values / count_the_average_distance__between_the_values
+
+
+
 if __name__ == '__main__':
 
     #Dùng hàm nhập
     result = enter_array_of_real_numbers()
-    a = find_all_maximum_values_in_real_number_array(result)
+    a = calculate_the_average_distance_between_the_values(result)
 
     print(a)
 

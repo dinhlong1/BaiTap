@@ -622,14 +622,573 @@ def caculate_sum_number_whose_tens_digit_is_five_in_list(list):
                 sum_list += i
     return sum_list
 
+#Bài 208: Tính tổng các giá trị chính phương trong mảng 1 chiều các số nguyên
+
+def sum_the_square_values_in_the_array(list):
+    sum_list = 0
+    for i in list:
+        if is_square_number(i) == True:
+            sum_list += i
+    return sum_list
+
+
+#Bài 209: Tính tổng các giá trị đối xứng trong mảng các số nguyên
+def sum_the_reversible_numbers_in_the_array(list):
+    sum_list = 0
+    for i in list:
+        if is_reversible_number(i) == True:
+            sum_list += i
+    return sum_list
+
+#Bài 210: Tính tổng các giá trị có chữ số đầu tiên là chữ số chẵn trong mảng các số nguyên
+def sum_values_with_an_even_number_first_digit(list):
+    sum_list = 0
+    for i in list:
+        if is_number_whose_first_digit_is_an_odd_number(i) ==False:
+            sum_list += i
+    return sum_list
+
+#Bài 211: Tính trung bình cộng các số nguyên tố trong mảng 1 chiều các số nguyên
+def calculate_the_average_prime_numbers(list):
+    sum_list_of_prime_number = 0
+    count_prime_number = 0
+    for i in list:
+        if is_prime_number(i) == True:
+            sum_list_of_prime_number += i
+            count_prime_number += 1
+    return sum_list_of_prime_number / count_prime_number
+
+#Bài 216: Đếm số lượng số chẵn trong mảng
+
+def count_the_even_numbers_in_list(list):
+    total_even_numbers = 0
+
+    for i in list:
+        if i % 2 == 0:
+            total_even_numbers += 1
+
+    return total_even_numbers
+
+#Bài 217: Đếm số dương chia hết cho 7 trong mảng
+
+def counts_positive_numbers_divisible_by_seven_in_list(list):
+    total_positive_numbers = 0
+
+    for i in list:
+        if i % 7 == 0 and i > 0:
+            total_positive_numbers += 1
+
+    return total_positive_numbers
+
+#Bài 218: Đếm số đối xứng trong mảng
+
+def counts_reversible_numbers_in_list(list):
+    total_reversible_numbers = 0
+
+    for i in list:
+        if is_reversible_number(i) == True:
+            total_reversible_numbers += 1
+
+    return total_reversible_numbers
+
+#Bài 219: Đếm số lần xuất hiện của giá trị x trong mảng
+def counts_the_number_of_occurrences_of_x_value(x, list):
+    total_the_number_of_occurrences_of_x_value = 0
+
+    for i in list:
+        if i == x:
+            total_the_number_of_occurrences_of_x_value += 1
+
+    return total_the_number_of_occurrences_of_x_value
+
+#Bài 220: Đếm số lượng giá trị tận cùng bằng 5 trong mảng
+
+def is_number_with_a_final_value_of_five(target_number):
+    str_target_number = str(target_number)
+    if str_target_number[len(str_target_number) -1] == "5":
+        return True
+    return False
+
+def counts_the_number_with_a_final_value_of_five( list):
+    total_the_number_with_a_final_value_of_five = 0
+
+    for i in list:
+        if is_number_with_a_final_value_of_five(i):
+
+            total_the_number_with_a_final_value_of_five += 1
+
+    return total_the_number_with_a_final_value_of_five
+
+# Bài 221: Cho biết sự tương quan giữa số lượng chẵn và lẻ trong mảng
+# Hàm trả về 1 trong 3 giá trị -1, 0, 1
+# Giá trị -1 là chẵn nhiều hơn lẻ
+# Giá trị 0 là chẵn bằng lẻ
+# Giá trị 1 là chẵn ít hơn lẻ
+
+def find_correlation_between_even_and_odd_numbers_in_list(list):
+    count_even_numbers = 0
+    count_odd_numbers = 0
+
+    for i in list:
+        if i % 2 == 0:
+            count_even_numbers += 1
+        else:
+            count_odd_numbers += 1
+
+    # Giá trị 1 là chẵn ít hơn lẻ
+    if count_odd_numbers > count_even_numbers :
+        return 1
+
+    # Giá trị 0 là chẵn bằng lẻ
+    elif count_odd_numbers == count_even_numbers :
+        return 0
+
+    else:
+        return -1
+
+#Bài 222: Đếm phần tử lớn hơn hay nhỏ hơn phần tử xung quanh mảng
+
+def Counts_elements_larger_or_smaller_than_surrounding_elements(list):
+
+    total_elements_larger_surrounding_elements = 0
+    total_elements_smaller_surrounding_elements = 0
+
+    for i in range(1, len(list) - 1):
+
+        if list[i -1] > list[i] and list[i+1] >list[i]:
+            total_elements_smaller_surrounding_elements += 1
+
+        elif list[i - 1] < list[i] and list[i+1] <list[i]:
+            total_elements_larger_surrounding_elements += 1
+    return total_elements_larger_surrounding_elements+ total_elements_smaller_surrounding_elements
+
+#Bài 223: Đếm số nguyên tố trong mảng
+
+def count_prime_number_in_list(list):
+    total_prime_number = 0
+    for i in list:
+
+        if is_prime_number(i) == True:
+
+            total_prime_number += 1
+
+    return total_prime_number
+
+#Bài 224: Đếm số hoàn thiện trong mảng
+
+def count_perfect_number_in_list(list):
+    total_perfect_number = 0
+    for i in list:
+
+       if is_perfect_number(i) == True:
+
+            total_perfect_number += 1
+
+    return total_perfect_number
+
+
+#Bài 225: Đếm số lượng giá trị lớn nhất có trong mảng
+def find_maximum_number(list):
+    maximum_number = list[0]
+
+    for i in list:
+        if maximum_number<i:
+            maximum_number=i
+
+    return maximum_number
+
+def count_the_maximum_number_of_values_in_list(list):
+    total_maximum_number = 0
+
+    for i in list:
+        if i == find_maximum_number(list):
+            total_maximum_number += 1
+
+    return total_maximum_number
+
+#Bài 226: Hãy xác định số lượng phần tử kề nhau mà cả 2 đều chẵn
+
+def counts_total_adjacent_elements_that_are_both_even(list):
+    total_adjacent_elements_that_are_both_even = 0
+
+    for i in range(0 ,len(list)-1):
+        if list[i] % 2 == 0 and list[i+1] % 2 == 0:
+            total_adjacent_elements_that_are_both_even += 1
+
+    return total_adjacent_elements_that_are_both_even
+
+#Bài 227: Hãy xác định số lượng phần tử kề nhau mà cả 2 trái dấu
+
+def is_opposite_signs(x , y):
+
+    return x * y < 0
+
+
+def counts_total_adjacent_elements_that_are_both_even(list):
+    total_adjacent_elements_that_are_both_even = 0
+
+    for i in range(0 ,len(list)-1):
+        if is_opposite_signs(list[i],list[i+1]):
+            total_adjacent_elements_that_are_both_even += 1
+
+    return total_adjacent_elements_that_are_both_even
+
+#Bài 228: Hãy xác định số lượng phần tử kề nhau mà số đứng sau cùng dấu số đứng trước và có giá trị tuyệt đối lớn hơn
+
+def count_elements_with_the_same_sign_as_the_number_and_the_absolute_value_is_greater_before_them(list):
+    total_adjacent_elements_the_same_sign = 0
+
+    for i in range(1, len(list) ):
+        if is_opposite_signs(list[i], list[i - 1]) == False and abs(list[i]) > abs(list[i-1]):
+
+            total_adjacent_elements_the_same_sign += 1
+
+    return total_adjacent_elements_the_same_sign
+
+#Bài 229: Đếm số lượng các giá trị phân biệt có trong mảng
+
+
+def counts_the_number_of_distinct_values(list):
+    count = 0
+    for i in range(0, len(list)):
+        a = 0
+        for t in range(0, len(list)):
+            if i != t :
+                if list[i] == list[t]:
+                    a = 1
+
+        if a == 0:
+            count += 1
+    return count
+
+#Bài 230: Liệt kê tần suất xuất hiện các giá trị trong mảng (mỗi giá trị liệt kê 1 lần)
+
+
+def list_how_often_values_are_present(list):
+    list_has_appeared = []
+    for i in range(0 ,len(list)):
+
+        if list[i] in list_has_appeared:
+            continue
+
+        count = 1
+        list_has_appeared.append(list[i])
+
+        for t in range(0, len(list)):
+
+            if i != t :
+                if list[i] == list[t]:
+                    count += 1
+
+        print("Giá trị {} được xuất hiên {} lần".format(list[i],count))
+
+
+#Bài 231: Hãy liệt kê các giá trị xuất hiện trong mảng 1 chiều các số nguyên đúng 1 lần
+
+def list_values_appears_once(list):
+    list_has_appeared = []
+
+    for i in range(0, len(list)):
+
+        if list[i] in list_has_appeared:
+            continue
+
+        a = 0
+        list_has_appeared.append(list[i])
+
+        for t in range(0, len(list)):
+            if i != t:
+                if list[i] == list[t]:
+                    a = 1
+
+        if a == 0:
+            print("Giá trị {} được xuất hiên 1 lần duy nhất".format(list[i]))
+
+#Bài 232: Hãy liệt kê các giá trị xuất hiện trong dãy quá 1 lần. Lưu ý: mỗi giá trị liệt kê 1 lần
+
+def list_values_appears_more_than_once(list):
+    list_has_appeared = []
+    for i in range(0 ,len(list)):
+
+        if list[i] in list_has_appeared:
+            continue
+
+        count = 1
+        list_has_appeared.append(list[i])
+
+        for t in range(0, len(list)):
+
+            if i != t :
+                if list[i] == list[t]:
+                    count += 1
+        if count> 1:
+            print("Giá trị {} được xuất hiên quá 1 lần".format(list[i],count))
+
+#Bài 233: Hãy liệt kê tần suất của các giá trị xuất hiện trong dãy. Lưu ý: mỗi giá trị liệt kêt tần suất 1 lần
+
+def list_values_appears_more_than_once_in_str(number):
+    number_str = str(number)
+    list_has_appeared = []
+    for i in range(0 ,len(number_str)):
+
+        if number_str[i] in list_has_appeared:
+            continue
+
+        count = 1
+        list_has_appeared.append(number_str[i])
+
+        for t in range(0, len(number_str)):
+
+            if i != t :
+                if number_str[i] == number_str[t]:
+                    count += 1
+        if count> 1:
+            print("Giá trị {} được xuất hiên quá 1 lần".format(number_str[i],count))
+
+
+
+#Bài 234: Cho 2 mảng a, b. Đếm số lượng giá trị chỉ xuất hiện 1 trong 2 mảng:
+
+def counts_the_number_of_values_that_appear_only_in_one_of_the_two_arrays(list1, list2) -> object:
+    list_values_has_appeared = []
+    count_values = 0
+    for i in list1:
+        if i in list_values_has_appeared:
+            continue
+        list_values_has_appeared.append(i)
+
+        count_appear = 0
+        for t in list2:
+            if i == t:
+                count_appear = 1
+        if count_appear == 0:
+            count_values += 1
+
+    for i in list2:
+        if i in list_values_has_appeared:
+            continue
+        list_values_has_appeared.append(i)
+
+        count_appear = 0
+        for t in list1:
+            if i == t:
+                count_appear = 1
+        if count_appear == 0:
+            count_values += 1
+    return count_values
+#Bài 235: Cho 2 mảng a, b. Liệt kê các giá trị chỉ xuất hiện 1 trong 2 mảng
+
+def List_values_that_appear_only_in_one_of_the_two_arrays(list1, list2):
+    list_values_has_appeared = []
+    for i in list1:
+        if i in list_values_has_appeared:
+            continue
+        list_values_has_appeared.append(i)
+
+        count_appear = 0
+        for t in list2:
+            if i == t:
+                count_appear = 1
+        if count_appear == 0:
+            print("Giá trị {} chỉ xuất hiện trong mảng 1 trong hai mảng".format(i))
+
+    for i in list2:
+        if i in list_values_has_appeared:
+            continue
+        list_values_has_appeared.append(i)
+
+        count_appear = 0
+        for t in list1:
+            if i == t:
+                count_appear = 1
+        if count_appear == 0:
+            print("Giá trị {} chỉ xuất hiện trong 1 trong hai mảng".format(i))
+
+# Bài 236(*): Cho 2 mảng a, b. Hãy cho biết số lần xuất hiện của mảng a trong mảng b
+
+
+def the_number_of_occurrences_of_array_a_in_array_b(list1, list2):
+    #Biến đếm số lần xuất hiện của mảng 1 trong mảng hai
+    count_list1_appear_list2 = 0
+    for i in range(0,len(list2)):
+
+        #Nếu tìm thấy vị trị đầu tiên của mảng 1 trong mảng 2 và độ dài của mảng hai
+        # tính từ i vẫn lớn hơn đồ dài mảng một thì bắt đầu vòng lặp
+        if list2[i] == list1[0] and len(list2) - i >= len(list1):
+
+            #Biến để kiểm tra đúng sai
+            a = 0
+
+            #Điểm bắt đầu
+            start = i
+            for t in list1:
+
+                #Kiểm tra từ kí tự tiếp theo trong văn bản nếu sai thì trả về a = 1 và dừng vòng lặp
+                if t != (list2[start]):
+                    a = 1
+                    break
+
+                start = start + 1
+
+
+            #Nếu sau khi chạy xong vòng lặp mà a vẫn bằng 0
+            #thì đương nhiên mảng 2 có chứa mảng 1
+            if a == 0:
+                count_list1_appear_list2 += 1
+
+    return count_list1_appear_list2
+
+
+#Bài 237 + 238(*): Hãy liệt kê các giá trị có số lần xuất hiện nhiều nhất trong mảng
+
+def count_number_of_occurrences_in_the_array(list):
+    list_has_appeared = []
+    maximum_appear = 0
+    for i in range(0, len(list)):
+
+        if list[i] in list_has_appeared:
+            continue
+
+        count = 1
+        list_has_appeared.append(list[i])
+
+        for t in range(0, len(list)):
+
+            if i != t:
+                if list[i] == list[t]:
+                    count += 1
+        if count > maximum_appear:
+            maximum_appear = count
+
+    return maximum_appear
+
+
+def list_the_values_with_the_most_occurrences_in_the_array(list):
+    list_has_appeared = []
+    list_values_maximum_appear = []
+    for i in range(0, len(list)):
+
+        if list[i] in list_has_appeared:
+            continue
+
+        count = 1
+        list_has_appeared.append(list[i])
+
+        for t in range(0, len(list)):
+
+            if i != t:
+                if list[i] == list[t]:
+                    count += 1
+        if count == count_number_of_occurrences_in_the_array(list):
+            list_values_maximum_appear.append(list[i])
+
+    return list_values_maximum_appear
+
+#Bài 239: Hãy đếm số lượng số nguyên tố phân biệt trong mảng
+
+def count_the_number_of_distinct_primes_in_the_array(list):
+    list_has_appeared = []
+    count = 0
+    for i in range(0, len(list)):
+        if list[i] in list_has_appeared:
+            continue
+
+        list_has_appeared.append(list[i])
+        flag = 0
+
+        for t in range(0 , len(list)):
+            if t != i and list[i] == list[t]:
+                flag =1
+                break
+
+        if flag == 0 and is_prime_number(list[i]):
+            count += 1
+
+    return count
+
+#Bài 240: Kiểm tra mảng có giá trị 0 hay không? Có trả về 1, không có trả về 0
+
+def is_a_list_0_in_list(list):
+
+    for i in list:
+
+        if i == 0:
+            return 1
+
+    return 0
+
+
+#Bài 241: Kiểm tra mảng có 2 giá trị 0 liên tiếp hay không? Có trả về 1, không có trả về 0
+
+def do_an_array_has_two_consecutive_values_equal_to_zero(list):
+    for i in range(0, len(list)-1):
+
+        if list[i]==0 and list[i+1] ==0:
+            return 1
+
+    return 0
+
+
+#Bài 242: Kiểm tra mảng có số chẵn hay không? Có trả về 1, không có trả về 0
+
+def do_a_list_has_even_number(list):
+    for i in list:
+        if i % 2 == 0:
+            return  1
+
+    return  0
+
+#Bài 243: Kiểm tra mảng có số nguyên tố hay không? Có trả về 1, không có trả về 0
+
+def do_a_list_has_prime_number(list):
+    for i in list:
+        if is_prime_number(i) == True:
+            return 1
+
+    return  0
+
+#Bài 244: Kiểm tra mảng thỏa tính chất: mảng không có số hoàn thiện lớn hơn 256. Có trả về 1, không có trả về 0
+def do_a_list_has_perfect_number_smaller_256(list):
+    for i in list:
+        if is_perfect_number(i) == True and i >256:
+            return 1
+
+    return 0
+
+#Bài 245: Kiểm tra mảng có toàn số chẵn không? Có trả về 1, không có trả về 0
+
+def is_list_of_even_number(list):
+    for i in list:
+        if i % 2 != 0:
+            return 0
+
+    return 1
+
+#Bài 246: Kiểm tra mảng có đối xứng không? Có trả về 1, không có trả về 0
+
+def is_the_array_symmetrical(list):
+
+    #Mảng đảo ngược
+    list1 = []
+
+    #Dùng vòng lặp để add phần tử vào mảng
+    for i in range(len(list)-1,-1,-1):
+        list1.append(list[i])
+
+    #So sánh 2 mảng
+    if list == list1:
+        return True
+
+    return False
+
+
 if __name__ == '__main__':
 
     #Dùng hàm nhập
     result = enter_array_of_integer_numbers()
 
-    a = find_lists_the_closest_pairs_of_values_in_list(result)
+    a = is_the_array_symmetrical(result)
+
     print(a)
-
-
 
 
