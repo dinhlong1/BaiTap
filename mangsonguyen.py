@@ -1,6 +1,7 @@
 #Bài 128 + 130: Viết hàm nhập, xuất mảng 1 chiều các số thực
 
 import math
+from termcolor import colored
 
 #Hàm kiểm tra đây có phải là số thực
 def is_float(value):
@@ -1181,14 +1182,639 @@ def is_the_array_symmetrical(list):
 
     return False
 
+#Bài 247: Ta định nghĩa 1 mảng có tính chất lẻ, khi tổng của 2 phần tử liên tiếp luôn là lẻ. Kiểm tra mảng có tính chất lẻ hay không
+
+def is_an_array_with_the_sum_of_two_consecutive_elements_is_always_odd(list):
+    for i in range(0, len(list)-1):
+        if (list[i] + list[i+1]) % 2 != 0:
+            return False
+    return True
+
+#Bài 248: Kiểm tra mảng có tăng dần hay không
+
+def is_this_array_with_ascending(list):
+    for i in range(0,len(list) - 1):
+        if list[i] > list[i+1]:
+            return False
+    return True
+
+#Bài 249: Kiểm tra mảng có giảm dần hay không
+
+def is_this_array_with_descending(list):
+    for i in range(0, len(list) - 1):
+        if list[i] < list[i + 1]:
+            return False
+    return True
+
+#Bài 250: Hảy cho biết các phần tử trong mảng có lập thành cấp số cộng hay không? Nếu có chỉ ra công sai d
+
+def do_an_array_has_elements_set_to_add(list):
+
+    if len(list) >2:
+        arithmetic_progression = list[1] - list[0]
+
+        for i in range(1, len(list) - 1):
+            if (list[i+1] - list[i]) != arithmetic_progression:
+                return False
+
+        return arithmetic_progression
+    else:
+        return False
+
+#Bài 251: Hãy cho biết các phần tử trong mảng có bằng nhau không
+
+def are_the_elements_in_the_array_equal(list):
+    for i in range(0, len(list) -1):
+        if list[i] != list[i+1]:
+            return False
+    return True
+
+
+#Bài 252: Ta định nghĩa 1 mảng được gọi là dạng song, khi phần tử có trị số I lớn hơn hoặc nhỏ hơn 2 phần tử xung quanh. Hãy viết hàm kiểm tra mảng có dạng sóng không
+
+def is_this_array_waveform(list):
+    for i in range(0,len(list)-1):
+        if (list[i] < list[i -1] and list[i] > list[i + 1]) or (list[i] > list[i -1] and list[i] < list[i + 1]):
+            return False
+    return  True
+
+#Bài 253: Hãy cho biết tất cả các phần tử trong mảng a có nằm trong mảng b không
+
+def are_all_elements_in_array_a_in_array_b(lista,listb):
+    for i in lista:
+        if i not in listb:
+            return False
+    return True
+
+#Bài 254: Hãy đếm giá trị trong mảng thỏa: lớn hơn tất cả các giá trị đứng đằng trước nó
+
+def counts_values_greater_than_all_values_preceding_it(list):
+    count = 0
+    for i in range(0,len(list)):
+        if i != 0:
+            flag = 1
+            for t in range(0,i):
+                if list[i] < list[t]:
+                    flag = 0
+            if flag == 1:
+                count +=1
+    return  count
+
+#Bài 255: Sắp xếp mảng tăng dần
+def sort_arrays_in_ascending_order(list):
+    list.sort(reverse = False)
+
+    return  list
+
+#Bài 256: Sắp xếp mảng giảm dần
+def sort_arrays_in_descending_order(list):
+    list.sort(reverse = True)
+
+    return  list
+
+#Bài 257: Sắp xếp lẻ tăng dần nhưng giá trị khác giữ nguyên vị trí
+
+def odd_sort_odd_numbers_but_other_values_stay_the_same(list):
+
+    for i in range(0,len(list)):
+        if list[i] % 2 != 0:
+            for t in range(i + 1,len(list)):
+                if list[t] % 2 != 0 and list[t] < list[i]:
+
+                    temp = list[i]
+                    list[i] = list[t]
+                    list[t] = temp
+    return list
+
+#Bài 258: Sắp xếp số nguyên tố tăng dần nhưng giá trị khác giữ nguyên vị trí
+
+def odd_sort_prime_numbers_but_other_values_stay_the_same(list):
+    for i in range(0,len(list)):
+        if is_prime_number(list[i]) == True:
+            for t in range(i + 1,len(list)):
+                if is_prime_number(list[t]) == True and list[t] < list[i]:
+
+                    temp = list[i]
+                    list[i] = list[t]
+                    list[t] = temp
+    return list
+
+#Bài 259: Sắp xếp số hoàn thiện giảm dần nhưng giá trị khác giữ nguyên vị trí
+
+def odd_sort_perfect_numbers_but_other_values_stay_the_same(list):
+    for i in range(len(list) -1 , -1 ,-1):
+        if is_perfect_number(list[i]) == True:
+            for t in range(i -1,-1 ,-1 ):
+                if is_perfect_number(list[t]) == True and list[t] < list[i]:
+
+                    temp = list[i]
+                    list[i] = list[t]
+                    list[t] = temp
+    return list
+
+#Bài 260: Cho 2 mảng a, b. Hãy cho biết mảng b có phải là hoán vị của mảng a không
+
+
+def Is_array_b_a_permutation_of_array_a(list_a , list_b):
+    list_a.sort(reverse = True)
+    list_b.sort(reverse = True)
+    for i in range(len(list_a)):
+        if list_a[i] != list_b[i]:
+            return False
+    return True
+
+#Bài 261: Sắp xếp số dương tăng dần, các số âm giữ nguyên vị trí
+
+
+def sort_in_ascending_positive_numbers_while_the_positions_keep_the_same_number(list):
+    for i in range(0, len(list)):
+        if list[i] >= 0:
+            for t in range(i + 1, len(list)):
+                if list[i] >= 0 and list[t] < list[i]:
+                    temp = list[i]
+                    list[i] = list[t]
+                    list[t] = temp
+    return list
+
+
+#Bài 262: Sắp xếp chẵn, lẻ tăng dần nhưng vị trí tương đối giữa các số không thay đổi
+
+def sort_even_and_odd_numbers_incrementally(list):
+    for i in range(len(list)):
+        if list[i] > 0:
+            for t in range(i + 1 ,len(list)):
+                if (list[i] % 2 != 0 and list[t] % 2 != 0 and list[t] < list[i]) or (list[i] % 2 == 0 and list[t] % 2 == 0 and list[t] < list[i]):
+
+                    temp = list[i]
+                    list[i] = list[t]
+                    list[t] = temp
+    return list
+
+#Bài 263: Sắp xếp số dương tăng dần, âm giảm dần. Vị trí tương đối không thay đổi
+
+def sort_positive_numbers_in_ascending_negative_numbers_descending_and_the_relative_position_does_not_change(list):
+    for i in range(len(list)):
+        if list[i] > 0:
+            for t in range(i + 1, len(list)):
+                if (list[i] > 0 and list[t] > 0 and list[t] < list[i]) or (list[i] % 2 < 0 and list[t] % 2 < 0 and list[t] > list[i]):
+                    temp = list[i]
+                    list[i] = list[t]
+                    list[t] = temp
+    return list
+
+
+
+#Thêm gạch chân dưới chuỗi
+def add_underlined_string(a) :
+    list = a.split(" ")
+    b =  "_".join(list)
+    return b
+
+
+#Bài 264: Trộn 2 mảng đã tăng thành 1 mảng được sắp xếp tăng
+
+def merges_two_incremented_arrays_into_one_increment_sorted_array(list_a ,list_b):
+    #Sắp sếp 2 mảng tăng
+    list_a.sort(reverse = False)
+    list_b.sort(reverse = False)
+
+    #add list b vào list a
+    list_a.extend(list_b)
+
+    #Sắp xếp lại list chứa a và b
+    list_a.sort(reverse = False)
+
+    #Trả vê kế quả
+    return list_a
+
+#Bài 265: Cho 2 mảng tăng. Hãy trộn thành 1 mảng giảm dần
+
+#Sắp sếp 2 mảng tăng
+def merges_two_incremented_arrays_into_one_descending_sorted_array(list_a, list_b):
+
+    list_a.sort(reverse = False)
+    list_b.sort(reverse = False)
+
+    #add list b vào list a
+    list_a.extend(list_b)
+
+    #Sắp xếp lại list chứa a và b
+    list_a.sort(reverse = True)
+
+    #Trả vê kế quả
+    return list_a
+
+
+# Bài 266: Thêm 1 phần tử x vào mảng tại vị trí k
+
+
+def adds_an_element_to_the_array_at_the_given_position(x , index,list):
+    list.insert(x,index)
+    return list
+
+
+#Bài 267: Viết hàm nhập mảng sao cho khi nhập xong thì giá trị trong mảng sắp xếp giảm dần
+def import_the_array_so_that_when_the_import_is_complete_the_values_in_the_sort_array_decrease():
+
+    list_integer_numbers = []
+
+    n = input("Tổng số giá trị muốn nhập là ")
+    while not is_option(n):
+        print("Lỗi")
+        n = input("Tổng số giá trị muốn nhập là ")
+
+    #Dùng vòng lặp để nhập đối tượng vào mảng số nguyên
+    for i in range(int(n)):
+
+        integer_number = input("Nhập phần tử số nguyên thứ "+str(i+1)+" là ")
+        #Nếu ko phải là số thực thì nhập lại
+        while not is_float(integer_number):
+            integer_number = input("Nhập lại phần tử số nguyên thứ " + str(i + 1) + " là ")
+        list_integer_numbers.append(int(integer_number))
+    list_integer_numbers.sort(reverse=True)
+    return list_integer_numbers
+
+#Bài 268: Hãy tạo mảng b từ mảng a các giá trị 0, 1 để mảng có tính chẵn lẻ
+
+def create_array_b_from_array_a_so_array_b_has_parity(list):
+
+    list_new = []
+    for i in list:
+        if list_new == []:
+            list_new.append(i)
+        if list_new[0] % 2 == 0 and i % 2 != 0:
+            list_new.append(i)
+            break
+        elif list_new[0] % 2 != 0 and i % 2 == 0:
+            list_new.append(i)
+            break
+    return list_new
+
+#Bài 269: Thêm x vào trong mảng tăng nhưng vẫn giữ nguyên tính tăng của mảng
+
+def adds_x_to_the_array_increment_but_keeps_the_array_increment(x, list):
+    list.append(x)
+    list.sort(reverse = False)
+    return list
+
+#Bài 270: Nhập mảng sau khi nhập xong đã tự sắp xếp tăng dần
+def after_importing_the_array_has_been_sorted_in_ascending_order():
+    list_integer_numbers = []
+
+    n = input("Tổng số giá trị muốn nhập là ")
+    while not is_option(n):
+        print("Lỗi")
+        n = input("Tổng số giá trị muốn nhập là ")
+
+    # Dùng vòng lặp để nhập đối tượng vào mảng số nguyên
+    for i in range(int(n)):
+
+        integer_number = input("Nhập phần tử số nguyên thứ " + str(i + 1) + " là ")
+        # Nếu ko phải là số thực thì nhập lại
+        while not is_float(integer_number):
+            integer_number = input("Nhập lại phần tử số nguyên thứ " + str(i + 1) + " là ")
+        list_integer_numbers.append(int(integer_number))
+    list_integer_numbers.sort(reverse=False)
+    return list_integer_numbers
+
+#Bài 271: Xóa các phần tử có chỉ số k trong mảng
+
+def delete_eletments_with_list_index(list_index, list):
+    for i in list_index:
+        list.pop(i)
+    return list
+def delete_elements_with_index_k_in_the_array(k, list):
+    list_index = []
+    for i in range(len(list) -1 ,-1,-1):
+        if list[i] == k:
+            list_index.append(i)
+    delete_eletments_with_list_index(list_index,list)
+    return list
+
+
+#Bài 273: Xóa tất cả các số âm trong mảng
+
+def delete_all_negative_numbers_in_the_array(list):
+    list_index = []
+    for i in range(len(list) - 1, -1, -1):
+        if list[i] < 0:
+            list_index.append(i)
+    delete_eletments_with_list_index(list_index, list)
+    return list
+
+
+#Bài 274: Xóa tất cả các số chẵn trong mảng
+
+def delete_all_even_numbers_in_the_array(list):
+    list_index = []
+    for i in range(len(list) - 1, -1, -1):
+        if list[i] % 2 == 0:
+            list_index.append(i)
+    delete_eletments_with_list_index(list_index, list)
+    return list
+
+#Bài 275: Xóa tất cả các số chính phương trong mảng
+def delete_all_square_number_in_the_array(list):
+    list_index = []
+    for i in range(len(list) - 1, -1, -1):
+        if is_square_number(list[i]) == 0:
+            list_index.append(i)
+    delete_eletments_with_list_index(list_index, list)
+    return list
+
+#Bài 276: Xóa tất cả các phần tử trùng với x
+
+def delete_all_elements_that_match_x(x,list):
+    list_index = []
+    for i in range(len(list) - 1, -1, -1):
+        if list[i] == x:
+            list_index.append(i)
+    delete_eletments_with_list_index(list_index, list)
+    return list
+
+# Bài 277: Xóa tất cả các số nguyên tố trong mảng
+def delete_all_prime_number_in_the_array(list):
+    list_index = []
+    for i in range(len(list) - 1, -1, -1):
+        if is_prime_number(list[i]) == 0:
+            list_index.append(i)
+    delete_eletments_with_list_index(list_index, list)
+    return list
+
+#Bài 278: Xóa tất cả các phần tử trùng nhau trong mảng và chỉ giữ lại duy nhất 1 phần tử
+def delete_all_duplicate_elements_in_the_array_and_keep_only_1_element(list):
+    a = len(list)
+    i = 0
+    while a > i:
+        list_delete =[]
+        for t in range(0,len(list)):
+            if t == i:
+                continue
+            if list[i] == list[t]:
+                list_delete.append(t)
+                a = a - 1
+        delete_eletments_with_list_index(list_delete,list)
+        i += 1
+    return list
+
+#Bài 279: Xóa tất cả các phần tử xuất hiện nhiều hơn 1 lần trong mảng
+
+def delete_all_elements_that_appear_more_than_once_in_the_array(list):
+    a = len(list)
+    i = 0
+    while a > i:
+        flag = 0
+        list_delete =[]
+        for t in range(0,len(list)):
+            if t == i:
+                continue
+            if list[i] == list[t]:
+                list_delete.append(t)
+                flag = 1
+                a = a - 1
+        if flag == 1:
+            list_delete.append(i)
+            delete_eletments_with_list_index(list_delete,list)
+            a = a -1
+        else:
+            i += 1
+    return list
+#Bài 280: Hãy đưa số 1 về đầu mảng
+
+def change_the_specified_position_to_the_top(index , list):
+    for i in range(index, -1 ,-1):
+
+        #Gắn giá trị sau làm giá trị trước nó
+        list[i] = list[i -1]
+    #Gắn giá trị đầu bằng 0
+    list[0] = 1
+    return list
+
+
+def return_number_one_to_the_beginning_of_the_array(list):
+
+    for i in range(0 ,len(list)):
+        #Nếu tìm được giá trị = 1
+        if list[i] == 1:
+
+            #Sử dụng hàm để đẩy một lên đầu mảng
+            change_the_specified_position_to_the_top(i, list)
+            return list
+
+
+#Bài 281: Hãy đưa chẵn về đầu, lẻ về cuối, phần tử 0 nằm giữa mảng
+
+#Đưa số chẵn vào đầu
+def put_numbers_at_the_top_of_the_list(index, list):
+
+    #Tạm lưu số đưa lên đầu để đưa lên đầu
+    temp = list[index]
+
+    #Chuyển giá trị sau làm giá trị trước
+    for i in range(index, -1, -1):
+        list[i] = list[i - 1]
+
+    list[0] = temp
+
+    return list
+
+def put_zero_in_the_middle_of_the_list(index, index_last, list):
+
+
+    for i in range(index,index_last+1):
+
+        #Gắn giá trị trước bằng giá trị sau để điểm cuối cùng  = 0
+        list[i] = list[i+1]
+
+    #Gắn điểm cuối cùng  =0
+    list[index_last] = 0
+
+    return list
+
+def put_even_to_beginning_and_odd_to_end_and_zero_in_the_middle_of_array(list):
+
+    index_last_even_number = 0
+
+
+    #Đẩy  số chẵn về đầu hàng
+    for i in range(0 , len(list)):
+        if list[i] % 2 == 0:
+            put_numbers_at_the_top_of_the_list(i, list)
+
+    #Tìm số chẵn cuối cùng
+    for i in range(len(list)-1 ,-1 ,-1):
+        if (list[i] % 2 == 0):
+            index_last_even_number = i
+            break
+
+    #Tìm  0 trong chuỗi số chẵn
+    for i in range(0, index_last_even_number):
+        if list[i] == 0:
+            put_zero_in_the_middle_of_the_list(i , index_last_even_number,list)
+    return list
+
+
+#Bài 282: Đưa các số chia hết cho 3 về đầu mảng
+
+def returns_the_numbers_divisible_by_3_to_the_beginning_of_the_list(list):
+    for i in range(0,len(list)):
+        if list[i] % 3 == 0:
+            put_numbers_at_the_top_of_the_list(i ,list)
+    return list
+
+#Bài 283: Đảo ngược mảng ban đầu
+def reverse_the_original_array(list):
+    #Xác định điểm đầu và điểm cuối
+    first_point = 0
+    last_point = len(list) -1
+
+    while last_point > first_point:
+
+        #Hoán đổi giá trị đầu thành giá trị cuối và ngược lại
+        temp = list[first_point]
+        list[first_point] =list[last_point]
+        list[last_point] = temp
+
+        first_point += 1
+        last_point -= 1
+
+    return list
+
+#Bài 284: Đảo ngược thứ tự các số chẵn trong mảng
+
+def reverse_the_order_of_even_numbers_in_array(list):
+    for i in range(0, len(list)):
+        if list[i] % 2 == 0:
+            for t in range(i+1 , len(list)):
+                if list[t] % 2 == 0:
+                    temp = list[i]
+                    list[i] = list[t]
+                    list[t] =temp
+    return list
+
+
+#Bài 285: Đảo ngược thứ tự số dương trong mảng
+
+def reverses_the_order_of_positive_numbers_in_the_array(list):
+    for i in range(0, len(list)):
+        if list[i] >  0:
+            for t in range(i+1 , len(list)):
+                if list[t] % 2 > 0:
+                    temp = list[i]
+                    list[i] = list[t]
+                    list[t] = temp
+    return list
+
+#Bài 286: Dịch trái xoay vòng k phần tử trong mảng
+
+def move_to_the_left_and_then_rotate_the_element_in_the_array_k_times(k,list):
+    for i in range(k):
+        temp  = list[0]
+        for i in range(0, len(list) -1):
+            list[i] = list[i + 1]
+        list[len(list) - 1] = temp
+    return list
+
+#Bài 287: Dịch phải xoay vòng k phần tử trong mảng
+
+def move_to_the_right_and_then_rotate_the_element_in_the_array_k_times(k,list):
+    for i in range(k):
+        temp  = list[0]
+        for i in range(0, len(list) -1):
+            list[i] = list[i + 1]
+        list[len(list) - 1] = temp
+    return list
+
+#Bài 288: Hãy xuất phần tử trong mảng theo yêu cầu: chẵn vàng, lẻ trắng
+
+def export_elements_in_the_array_as_required_even_yellow_and_odd_white(list):
+    for i in list:
+        if i % 2 == 0:
+            print(colored('{}'.format(i), 'yellow'))
+        else:
+            print(colored('{}'.format(i), 'white'))
+
+
+#Bài 289: Xuất mảng: chẵn nằm trên 1 mảng, lẻ nằm trên hàng tiếp theo
+def print_even_is_on_an_array_and_odd_is_on_the_next_row(list):
+    for i in list:
+        if i % 2 == 0:
+            print("{}".format(i) ,end=" ")
+    print()
+    for i in list:
+        if i % 2 != 0:
+            print("{}".format(i), end=" ")
+
+#Bài 290: Đảo ngược thứ tự số chẵn và lẻ trong mảng nhưng giữ vị trí tương đối
+
+def reverse_the_order_of_even_and_odd_numbers_in_array_but_keep_relative_position(list):
+    for i in range(0, len(list)):
+        if list[i] >= 0:
+            for t in range(i+1, len(list)):
+                if list[t] >= 0 and t != i:
+                    if (list[t] % 2 == 0 and list[t] % 2 == 0) or (list[t] % 2 != 0 and list[t] % 2 != 0):
+                        temp = list[i]
+                        list[i] = list[t]
+                        list[t] =temp
+    return list
+
+#Bài 291: Biến đổi mảng bằng cách thay giá trị max = giá trị min và ngược lại
+
+def find_biggest_number_in_list(list):
+    target_number = list[0]
+    for i in range(1 , len(list)):
+        if list[i] > target_number:
+            target_number = list[i]
+
+    return target_number
+
+def find_smallest_number_in_list(list):
+    target_number = list[0]
+    for i in range(1, len(list)):
+        if list[i] < target_number:
+            target_number = list[i]
+
+    return target_number
+
+def replace_maximum_value_with_minimum_value_and_vice_versa(list):
+    for i in range(0, len(list)):
+        for t in range(i+1 ,len(list)):
+            if (find_smallest_number_in_list(list) == list[i] and find_biggest_number_in_list(list) == list[t]) or (find_smallest_number_in_list(list) == list[t] and find_biggest_number_in_list(list) == list[i]):
+                temp = list[i]
+                list[i] = list[t]
+                list[t] = temp
+
+    return list
+
+#Bài 293: Liệt kê tất cả các mảng con
+def list_all_sub_arrays(list):
+    #Tạo Mảng con
+
+    #mảng chứa các mảng con
+    lists = []
+
+    for i in range(len(list)):
+        t = lists[:]
+        new = list[i]
+
+
+        for j in range(len(lists)):
+            lists[j] = lists[j] + [new]
+        lists = t + lists
+
+    return lists
+
 
 if __name__ == '__main__':
 
     #Dùng hàm nhập
     result = enter_array_of_integer_numbers()
+    # result2 = enter_array_of_integer_numbers()
 
-    a = is_the_array_symmetrical(result)
+    a = a(result)
+
 
     print(a)
+
 
 

@@ -490,8 +490,35 @@ def calculate_the_average_distance_between_the_values(list):
     print(sum_the_average_distance_between_the_values)
     return sum_the_average_distance_between_the_values / count_the_average_distance__between_the_values
 
+#Bài 272: Hãy xóa tất cả số lớn nhất trong mảng các số thực
+def delete_eletments_with_list_index(list_index, list):
+    for i in list_index:
+        list.pop(i)
+    return list
+
+def delete_all_the_largest_numbers_in_the_array_of_real_numbers(list):
+    a = len(list)
+    i = 0
+    while i <= a:
+
+        if list[i] == find_biggest_real_number(list):
+            list.pop(i)
+            a -= 1
+        i += 1
+
+    return list
 
 
+#Bài 292: Biến đổi mảng số thực bằng cách thay tất cả phần tử trong mảng bằng số nguyên gần nó nhất (giống làm tròn)
+
+def rounds_the_elements_in_the_array_of_real_numbers(list):
+
+    for i in range(0, len(list)):
+        list[i] = int(list[i])
+
+    return list
+
+#
 if __name__ == '__main__':
 
     #Dùng hàm nhập
