@@ -320,6 +320,12 @@ def find_all_number_in_space_in_list_real_number(x, y,list):
             list_number.append(i)
     return list_number
 
+#Bài 182: Cho mảng 1 chiều các số thực. Hãy viếth hàm liệt kê tất cả các giá trị trong mảng có ít nhất 1 lận cận trái dấu với nó
+    number_list = []
+    for i in range(1, len(list) - 1):
+        if (list[i] >= 0 and (list[i - 1] < 0 or list[i + 1] < 0)) or (list[i] < 0 and (list[i - 1] >= 0 or list[i + 1] >= 0)):
+            number_list.append(list[i])
+    return number_list
 
 #Bài 182: Cho mảng 1 chiều các số thực. Hãy viết hàm liệt kê tất cả các giá trị trong mảng có ít nhất 1 lận cận trái dấu với nó
 

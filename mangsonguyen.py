@@ -1807,6 +1807,7 @@ def list_all_sub_arrays(list):
 
 if __name__ == '__main__':
 
+
     #Dùng hàm nhập
     result = enter_array_of_integer_numbers()
     # result2 = enter_array_of_integer_numbers()
