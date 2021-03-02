@@ -86,7 +86,76 @@ class polynomial():
         return p
 
 # Bài 496: Tính thương 2 đa thức
-    def quotient_two_polynomials(self,other):
+#     def quotient_two_polynomials(self,other):
+#         temp = self.coefficient + other.coefficient
+#         index = self.index_number + other.index_number
+#         for i in range(self.index_number + 1):
+#             for j in range(other.index_number + 1):
+#                 temp[i + j] = self.coefficient[i] + other.coefficient[j]
+#         p = polynomial(temp, index)
+#         return p
+# Bài 497: Tính đa thức dư của phép chia đa thức thứ nhất cho đa thức thứ hai
+# Bài 498: Tính đạo hàm cấp 1 của đa thức
+    def calculate_the_primary_derivative_of_the_polynomial(self):
+        index = self.index_number - 1
+        temp = self.coefficient
+        for i in range(len(temp) - 1, 0, -1):
+            temp[i - 1] = self.coefficient[i] * i
+        temp[0] += self.coefficient[0]
+        temp.pop(len(temp) - 1)
+        p = polynomial(temp, index)
+        return p
+
+# Bài 499: Tính đạo hàm cấp k của đa thức
+    def calculate_the_derivative_k_level_of_the_polynomial(self, k):
+        if k >= self.index_number:
+            print("Cấp k không thể lớn hơn số mũ")
+        else:
+            a = polynomial(self.coefficient,self.index_number)
+            for i in range(0,k):
+                a = a.calculate_the_primary_derivative_of_the_polynomial()
+            return a
+# Bài 500: Tính giá trị của đa thức tại vị trí x = x0
+    def calculate_the_value_of_the_polynomial_at_a_value_of_x(self,x):
+        sum = 0
+        for i in range(self.index_number, -1, -1):
+            sum += self.coefficient[i]*(x**i)
+        return sum
+
+# Bài 501: Định nghĩa toán tử cộng (operator +) cho hai đa thức
+    def __add__(self, other):
+        if self.index_number > other.index_number:
+            index = self.index_number
+            temp = self.coefficient
+            n = other.index_number
+        else:
+            index = other.index_number
+            temp = other.coefficient
+            n = self.index_number
+        for i in range(n + 1):
+            temp[i] = other.coefficient[i] + self.coefficient[i]
+        p = polynomial(temp, index)
+        return p
+
+# Bài 502: Định nghĩa toán tử trừ (operator -) cho hai đa thức
+    def __sub__(self, other):
+        if self.index_number > other.index_number:
+            index = self.index_number
+            temp = self.coefficient
+            n = other.index_number
+        else:
+            index = other.index_number
+            temp = other.coefficient
+            n = self.index_number
+        for i in range(n + 1):
+            if self.index_number >= other.index_number:
+                temp[i] = self.coefficient[i] - other.coefficient[i]
+            else:
+                temp[i] = other.coefficient[i] - self.coefficient[i]
+        p = polynomial(temp, index)
+        return p
+# Bài 503: Định nghĩa toán tử nhân (operator *) cho hai đa thức
+    def __mul__(self,other):
         temp = self.coefficient + other.coefficient
         index = self.index_number + other.index_number
         for i in range(self.index_number + 1):
@@ -94,6 +163,25 @@ class polynomial():
                 temp[i + j] = self.coefficient[i] + other.coefficient[j]
         p = polynomial(temp, index)
         return p
+# Bài 505: Tìm nghiệm của đa thức trong đoạn [a, b] cho trước
+    def find_the_solution_of_the_polynomial_in_the_given_interval_a_to_b(self, a, b):
+        if self.calculate_the_value_of_the_polynomial_at_a_value_of_x(
+                a) * self.calculate_the_value_of_the_polynomial_at_a_value_of_x(b) > 0:
+            print("Error")
+            return
+        c = a
+        while (b - a) >= 0.01:
+            c = (a + b) / 2
+            if self.calculate_the_value_of_the_polynomial_at_a_value_of_x(c) == 0:
+                break
+            if self.calculate_the_value_of_the_polynomial_at_a_value_of_x(
+                    c) * self.calculate_the_value_of_the_polynomial_at_a_value_of_x(a) < 0:
+                b = c
+            else:
+                a = c
+        return "Nghiệm của đa thức là {}".format(c)
+
+
 
 def create_polynomial():
     index_number = input("Nhập số mũ")
@@ -108,34 +196,14 @@ def create_polynomial():
     p = polynomial(coefficient, int(index_number))
     return p
 
-
 a = create_polynomial()
-b = create_polynomial()
-print((a.product_two_polynomials(b)).__str__())
+# p = create_polynomial()
+print((a.find_the_solution_of_the_polynomial_in_the_given_interval_a_to_b(-300,200)).__str__())
 
 
 
 
 
-# Bài 497: Tính đa thức dư của phép chia đa thức thứ nhất cho đa thức thứ hai
-# Bài 498: Tính đạo hàm cấp 1 của đa thức
-# Bài 499: Tính đạo hàm cấp k của đa thức
-# Bài 500: Tính giá trị của đa thức tại vị trí x = x0
-# Bài 501: Định nghĩa toán tử cộng (operator +) cho hai đa thức
-# Bài 502: Định nghĩa toán tử trừ (operator -) cho hai đa thức
-# Bài 503: Định nghĩa toán tử nhân (operator *) cho hai đa thức
 # Bài 504: Định nghĩa toán tử thương (operator /) cho hai đa thức
-# Bài 505: Tìm nghiệm của đa thức trong đoạn [a, b] cho trước
-#Hàm tạo đa thức
-# def create_polynomial():
-#     a = input("Nhập a")
-#     while sn.is_integer(a) == False:
-#         a = input("Nhập lại a")
-#     n = input("Nhập n")
-#     while sn.is_integer(n) == False:
-#         n = input("Nhập lại n")
-#     p = polynomial(a,n)
-#     return p
-#
-# a= create_polynomial()
-# print(a.__str__())
+
+
